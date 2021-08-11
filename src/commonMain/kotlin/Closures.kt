@@ -17,11 +17,6 @@ infix fun Predicate.whileFalse(code: Block){
     }
 }
 
-fun Block.repeat(){
-    this()
-    this.repeat()
-}
-
 inline infix fun Block.ensure(code: Block){
     try{
         this()
