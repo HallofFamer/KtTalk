@@ -2,12 +2,8 @@ package com.mysidia.kttalk
 
 import kotlin.math.*
 
-fun Long.timesRepeat(lambda: (Int) -> Unit){
-    var i = 1
-    while(i <= this){
-        lambda(i)
-        i++
-    }
+fun Long.abs(): Long{
+    return abs(this)
 }
 
 fun Long.even(): Boolean{
@@ -19,13 +15,13 @@ fun Long.odd(): Boolean{
 }
 
 fun Long.factorial(): Long{
-    var i = 1L;
+    var i = 1L
     var product = 1L
     while(i <= this){
         product *= i
-        i++;
+        i++
     }
-    return product;
+    return product
 }
 
 fun Long.gcd(that: Int): Long{
@@ -46,6 +42,26 @@ fun Long.lcm(that: Long): Long{
     return this / this.gcd(that) * that
 }
 
-fun Long.abs(): Long{
-    return abs(this)
+inline infix fun Long.timesRepeat(lambda: (Long) -> Unit){
+    var i = 1L
+    while(i <= this){
+        lambda(i)
+        i++
+    }
+}
+
+inline fun Long.upTo(that: Long, lambda: (Long) -> Unit){
+    var i = this
+    while(i <= that){
+        lambda(i)
+        i++
+    }
+}
+
+inline fun Long.downTo(that: Long, lambda: (Long) -> Unit){
+    var i = this
+    while(i >= that){
+        lambda(i)
+        i--
+    }
 }
