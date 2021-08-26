@@ -6,10 +6,6 @@ fun Number.abs(): Double{
     return abs(this.toDouble())
 }
 
-fun Number.reciprocal(): Double{
-    return 1 / this.toDouble()
-}
-
 fun Number.arcCos(): Double{
     return acos(this.toDouble())
 }
@@ -74,8 +70,17 @@ fun Number.log(x: Number): Double{
     return log(this.toDouble(), x.toDouble())
 }
 
+fun Number.reciprocal(): Double{
+    return 1 / this.toDouble()
+}
+
 fun Number.round(): Double{
     return round(this.toDouble())
+}
+
+fun Number.round(numDigits: Int) : Double{
+    val factor = 10.0.pow(numDigits.toDouble())
+    return (this.toDouble() * factor).roundToInt() / factor
 }
 
 fun Number.sin(): Double{
@@ -100,4 +105,25 @@ fun Number.tan(): Double{
 
 fun Number.tanh(): Double{
     return tanh(this.toDouble())
+}
+
+fun Number.step(to: Number, lambda: (Number) -> Unit){
+    this.step(to, 1, lambda)
+}
+
+fun Number.step(to: Number, step: Number, lambda: (Number) -> Unit){
+    if(step == 0) throw IllegalArgumentException("parameter step cannot be 0.")
+    var current = this.toDouble()
+    if(step.toDouble() > 0){
+        while(current <= to.toDouble()){
+            lambda(current)
+            current += step.toDouble()
+        }
+    }
+    else{
+        while(current >= to.toDouble()){
+            lambda(current)
+            current += step.toDouble()
+        }
+    }
 }
