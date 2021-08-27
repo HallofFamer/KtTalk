@@ -1,6 +1,7 @@
 # KtTalk
 A kotlin library that add smalltalk style methods to objects.
 
+## Motivation
 Smalltalk is a pure OO language in which everything is an object, and everything happens by sending messages(aka method calls). For this reason, it does not have built-in control structures, and you will achieve conditional branches and iterations/loops by calling methods. 
 
 For example, if statements in smalltalk are implemented as sending message ifTrue: trueClosure ifFalse: falseClosure to a Boolean object:
@@ -27,8 +28,33 @@ var n = 1
 { n < 1000 } whileTrue { n = n * 2 }
 ```
 
-As you see, Kotlin is a beautiful language that we can hope to write elegant code as we could in smalltalk. This library also provides other extension methods on Boolean, Number and Closure types. A full list will be provided below shortly. 
+As you see, Kotlin is a beautiful language that we can hope to write elegant code as we could in smalltalk. This library also provides other extension methods on Any, Boolean, Number and Closure types. 
 
-***Note***:
+
+## Extensions
+A full list of the extension methods are provided below. 
+
+#### Type alias
+* `typealias Predicate` : `() -> Boolean`, a closure that evaluates to boolean value.
+* `typealias Block`: `() -> Unit`, a closure that returns no value.
+* `typealias Closure`: `() -> Any?`, a closure that returns any values.
+
+#### Any? Methods
+* `Any?.isNull()` - checks if the receiver object is null.
+* `Any?.ifNull(block: Block)` - evaluates a block if the receiver object is null.
+* `Any?.ifNotNull(block: Block)` - evaluates a block if the receiver object is not null.
+* `Any?.ifNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is null, otherwise evaluates the second block.
+* `Any?.ifNotNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is not null, otherwise evaluates the second block.
+
+#### Boolean Methods
+
+#### Number Methods
+
+#### Integer/Long Methods
+
+#### Closures Methods
+
+
+## Notes:
 1. Due to the restriction of non-local return being inline methods only in Kotlin, it will not be possible to return from recursive methods such as *whileTrue* and *whileFalse* on Predicate objects. 
 2. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. This is not an issue with float/double values.

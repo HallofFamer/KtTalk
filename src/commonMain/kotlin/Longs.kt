@@ -10,11 +10,8 @@ fun Long.even(): Boolean{
     return this % 2 == 0L
 }
 
-fun Long.odd(): Boolean{
-    return this % 2 != 0L
-}
-
 fun Long.factorial(): Long{
+    if(this < 0L) throw ArithmeticException("Cannot compute factorial of negative integers.")
     var i = 1L
     var product = 1L
     while(i <= this){
@@ -40,6 +37,10 @@ fun Long.lcm(that: Int): Long{
 
 fun Long.lcm(that: Long): Long{
     return this / this.gcd(that) * that
+}
+
+fun Long.odd(): Boolean{
+    return this % 2 != 0L
 }
 
 inline infix fun Long.timesRepeat(lambda: (Long) -> Unit){
