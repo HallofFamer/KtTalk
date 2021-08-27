@@ -10,11 +10,8 @@ fun Int.even(): Boolean{
     return this % 2 == 0
 }
 
-fun Int.odd(): Boolean{
-    return this % 2 != 0
-}
-
 fun Int.factorial(): Int{
+    if(this < 0) throw ArithmeticException("Cannot compute factorial of negative integers.")
     var i = 1
     var product = 1
     while(i <= this){
@@ -40,6 +37,10 @@ fun Int.lcm(that: Int): Int{
 
 fun Int.lcm(that: Long): Long{
     return this.toLong() / this.toLong().gcd(that) * that
+}
+
+fun Int.odd(): Boolean{
+    return this % 2 != 0
 }
 
 inline infix fun Int.timesRepeat(lambda: (Int) -> Unit){
