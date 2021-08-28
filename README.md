@@ -28,11 +28,34 @@ var n = 1
 { n < 1000 } whileTrue { n = n * 2 }
 ```
 
-As you see, Kotlin is a beautiful language that we can hope to write elegant code as we could in smalltalk. This library also provides other extension methods on Any, Boolean, Number and Closure types. 
+As you see, Kotlin is a beautiful language that we can hope to write elegant code as we could in smalltalk. This library also provides other extension methods on Any, Boolean, Number and Closure types.
 
 
-## Extensions
-A full list of the extension methods are provided below. 
+## More Examples
+The last section already provides two simple examples of achieving smalltalk-style if and while statement, but there are much more than that. For instance, you can use call the method timesRepeat(block) on an integer object i to evaluate the provided block of code i times:
+
+```Kotlin
+val i = 5
+i timesRepeat { println("Iteration: ${it}") }
+```
+
+This will print the line 5 times with the value of **it** ranging from 1 to 5. Similarly, there are methods upTo(to, block), downTo(to, block) and step(to, stepsize, block) that you can use for number objects. They are more elegant than writing traditional for loops(well Kotlin does not have C style for loops anyway).
+
+If you wonder how smalltalk handles exceptions, well, this is not rocket science either. There are such methods you can call on a block/closure object, as the below code snipper demonstrates:
+
+```Kotlin
+val i = 5
+{ i / 0 }.on<ArithmeticException> { println("Cannot divide a number by 0") }
+```
+
+This will attempt to evaluate the receiver block/closure object, which may throw an ArithmeticException. If this exception is thrown, catches it and evaluates another block. This look stunningly similar to a traditional try...catch statement, doesnt it?
+
+Now we can see clearly that we may not need any control structures at all in a highly expressive/elegant programming language, as it is possible to implement all of them as methods on receiver objects. I quite like the notion of 'receiver' in Kotlin language, which reminds me of Smalltalk's idea of 'sending messages to receiver objects'. 
+
+The below section provides a full list of extension methods.
+
+
+## Extension Methods List
 
 #### Type Alias
 * `typealias Predicate` - `() -> Boolean`, a closure that evaluates to boolean value.
