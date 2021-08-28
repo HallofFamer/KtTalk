@@ -6,7 +6,7 @@ Smalltalk is a pure OO language in which everything is an object, and everything
 
 For example, if statements in smalltalk are implemented as sending message ifTrue: trueClosure ifFalse: falseClosure to a Boolean object:
 
-```
+```smalltalk
 (17 * 13 > 220) 
    ifTrue: [ Transcript show: ’17 x 13 is greater than 220’ ] 
 // The true block will execute, prints "17 x 13 is greater than 220" on the transcript. 
@@ -14,7 +14,7 @@ For example, if statements in smalltalk are implemented as sending message ifTru
 
 Similarly, sending message whileTrue: block to a closure object achieves something similar to a while loop: 
 
-```
+```smalltalk
 n := 1. 
 [ n < 1000 ] whileTrue: [ n := n*2 ]. 
 // n is now 1024.
@@ -22,7 +22,7 @@ n := 1.
 
 This is an elegant OO approach to handle the procedural control structures, combining the strength of OOP and FP. Unfortunately modern OO languages have abandoned this approach, and due to the language limitations its usually impossible to build such a userland library in the mainstream languages. The good new is that, it is actually possible to achieve such behaviors in Kotlin, thanks to its powerful language support for extension methods, trailing closures, infix function syntax and nonlocal return. With the KtTalk library, the above two smalltalk code can be written in Kotlin: 
 
-```
+```kotlin
 (17 * 13 > 200) ifTrue { println("17 x 13 is greater than 220") }
 var n = 1
 { n < 1000 } whileTrue { n = n * 2 }
@@ -34,25 +34,68 @@ As you see, Kotlin is a beautiful language that we can hope to write elegant cod
 ## Extensions
 A full list of the extension methods are provided below. 
 
-#### Type alias
-* `typealias Predicate` : `() -> Boolean`, a closure that evaluates to boolean value.
-* `typealias Block`: `() -> Unit`, a closure that returns no value.
-* `typealias Closure`: `() -> Any?`, a closure that returns any values.
+#### Type Alias
+* `typealias Predicate` - `() -> Boolean`, a closure that evaluates to boolean value.
+* `typealias Block` - `() -> Unit`, a closure that returns no value.
+* `typealias Closure` - `() -> Any?`, a closure that returns any values.
 
 #### Any? Methods
-* `Any?.isNull()` - checks if the receiver object is null.
-* `Any?.ifNull(block: Block)` - evaluates a block if the receiver object is null.
-* `Any?.ifNotNull(block: Block)` - evaluates a block if the receiver object is not null.
-* `Any?.ifNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is null, otherwise evaluates the second block.
-* `Any?.ifNotNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is not null, otherwise evaluates the second block.
+* `Any?.isNull() : Boolean` - checks if the receiver object is null.
+* `inline infix Any?.ifNull(block: Block)` - evaluates a block if the receiver object is null.
+* `inline infix Any?.ifNotNull(block: Block)` - evaluates a block if the receiver object is not null.
+* `inline infix Any?.ifNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is null, otherwise evaluates the second block.
+* `inline infix Any?.ifNotNull(block: Block, otherwise: Block)` - evaluates first block if receiver object is not null, otherwise evaluates the second block.
 
 #### Boolean Methods
+* `inline infix Boolean.ifTrue(block: Block)` - evaluates a block if the receiver is boolean true value, this is smalltalk's way of if statement.
+* `inline infix Boolean.ifFalse(block: Block)` - evaluates a block if the receiver is boolean false value, this is smalltalk's way of unless statement.
+* `inline infix Boolean.ifTrue(block: Block, ifFalse: Block)` - evaluates first block if the receiver is boolean true value, otherwise evaluates the second block, this is smalltalk's way of if...else statement.
+* `inline infix Boolean.ifFalse(block: Block, ifTrue: Block)` - evaluates first block if the receiver is boolean false value, otherwise evaluates the second block, this is smalltalk's way of unless...else statement.
 
 #### Number Methods
+* `Number.abs(): Double` - computes the absolute value of the receiver number.
+* `Number.arcCos() : Double` - computes the arc cosine value of the receiver number.
+* `Number.arcCosh() : Double` - computes the arc hyperbolic cosine value of the receiver number.
+* `Number.arcSin() : Double` - computes the arc sine value of the receiver number.
+* `Number.arcSinh() : Double` - computes the arc hyperbolic sine value of the receiver number.
+* `Number.arcTan() : Double` - computes the arc tangent value of the receiver number.
+* `Number.arcTanh(): Double` - computes the arc hyperbolic tangent value of the receiver number.
+* `Number.ceil() : Double` - rounds to the next integer value greater than this receiver number.
+* `Number.cos() : Double` - computes the cosine value of the receiver number.
+* `Number.cosh() : Double` - computes the hyperbolic cosine value of the receiver number.
+* `Number.exp() : Double` - computes the value of exp(x) where x is this receiver number.
+* `Number.floor() : Double` - rounds to the next integer value less than this receiver number.
+* `Number.hypot(that: Number) : Double` - computes the square root of the square of this receiver number with another number.
+* `Number.ln(): Double` - computes the value of ln(x) where x is this receiver number.
+* `Number.log() : Double` - computes the value of log(x) where x is this receiver number.
+* `Number.reciprocal() : Double` - computes the reciprocal value of this receiver number.
+* `Number.round(numDigits: Int) : Double` - rounds the receiver number to the supplied number of digits.
+* `Number.sin() : Double` - computes the sine value of this receiver number.
+* `Number.sinh() : Double` - computes the hyperbolic sine value of this receiver number.
+* `Number.sqrt() : Double` - computes the square root of this receiver number.
+* `Number.square() : Double` - computes the square of this receiver number.
+* `Number.tan() : Double` - computes the tangent value of this receiver number.
+* `Number.tanh() : Double` - computes the hyperbolic tangent value of this receiver number.
+* `Number.step(to: Number, step: Number, lambda: (Number) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver number, until it reaches the ending number. The step size may be provided optionally(default to 1).  
 
-#### Integer/Long Methods
+#### Int/Long Methods
+* `Int|Long.abs() : Int|Long` - computes the absolute value of the receiver integer.
+* `Int|Long.even() : Boolean` - checks if the receiver integer is even number.
+* `Int|Long.factorial() : Int|Long` - computes the factorial of the receiver integer.
+* `Int|Long.gcd(that: Int|Long) : Int|Long` - finds the greatest common divisor of two integers.
+* `Int|Long.lcm(that: Int|Long) : Int|Long` - finds the least common multiple of two integers.
+* `Int|Long.odd() : Boolean` - checks if the receiver integer is odd number.
+* `inline infix Int|Long.timesRepeat(lambda: (Int|Long) -> Unit)` - evaluates the supplied lambda block as many times as the receiver integer.
+* `inline Int|Long.upTo(that: Int|Long, lambda: (Int|Long) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver integer until it reaches the ending integer, step size is 1.
+* `inline Int|Long.downTo(that: Int|Long, lambda: (Int|Long) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver integer until it reaches the ending integer, step size is -1.
 
-#### Closures Methods
+#### Block/Closure Methods
+* `infix Predicate.whileTrue(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to true, this is smalltalk's way of while statement.
+* `infix Predicate.whileFalse(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to false, this is smalltalk's way of until statement.
+* `inline infix Block|Closure.ensure(code: Block) : Unit|Any?` - evaluates the supplied code block regardless of whether the receiver block/closure executes successfully, this is smalltalk's way of try...finally statement.
+* `inline infix Block|Closure.ifCurtailed(code: Block) : Unit|Any?` - evaluates the supplied code block if the receiver block/closure execution fails with error/exception.
+* `inline infix Block|Closure.on<T: Throwable>(code: (T) -> Unit)` - evaluates the supplied code block if the receiver block/closure execution throws an exception of type T, this is smalltalk's way of try...catch statement.
+* `inline infix Block|Closure.on<T: Throwable>(code: (T) -> Unit, ensure: Block)` - evaluates the supplied code block if the receiver block/closure execution throws an exception of type T, and always evaluates the second code block, this is smalltalk's way of try...catch...finally statement.
 
 
 ## Notes:
