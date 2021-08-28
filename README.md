@@ -123,4 +123,5 @@ The below section provides a full list of extension methods.
 
 ## Notes:
 1. Due to the restriction of non-local return being inline methods only in Kotlin, it will not be possible to return from recursive methods such as *whileTrue* and *whileFalse* on Predicate objects. 
-2. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. This is not an issue with float/double values.
+2. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. This is not an issue with float/double numbers.
+3. Although this library is fun, I do not recommend using it in serious corporate/enterprise project. It is however, good enough to use in small and hobbyist projects, especially if you enjoy Smalltalk like I do.
