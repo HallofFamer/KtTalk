@@ -32,14 +32,23 @@ As you see, Kotlin is a beautiful language that we can hope to write elegant cod
 
 
 ## More Examples
-The last section already provides two simple examples of achieving smalltalk-style if and while statement, but there are much more than that. For instance, you can use call the method timesRepeat(block) on an integer object i to evaluate the provided block of code i times:
+The last section already provides two simple examples of achieving smalltalk-style if and while statement, but there are much more than that. You can use the method ifNull(block) on Any? and it will evaluates the supplied block if the receiver is null:
+
+```Kotlin
+val p = Person()
+p.name ifNull { throw Exception("An error occurred, the person does not have a name yet!") }
+```
+
+Smalltalk actively uses such methods to handle error conditions at the absence of a value/property. To me, this is a rather elegant way to throw an exception based on certain conditions, compared to writing lots of if checks. 
+
+On the other hand, you can use call the method timesRepeat(block) on an integer object i to evaluate the provided block of code i times:
 
 ```Kotlin
 val i = 5
 i timesRepeat { println("Iteration: ${it}") }
 ```
 
-This will print the line 5 times with the value of **it** ranging from 1 to 5. Similarly, there are methods upTo(to, block), downTo(to, block) and step(to, stepsize, block) that you can use for number objects. They are more elegant than writing traditional for loops(well Kotlin does not have C style for loops anyway).
+This will print the line 5 times with the value of **it** ranging from 1 to 5. Similarly, there are methods upTo(to, block), downTo(to, block) and step(to, stepsize, block) that you can use for number objects. They are more elegant than writing traditional for loops(well Kotlin does not have C style for loops anyway), and thanks to Kotlin's support for trailing closures the code looks nice even for methods accepting multiple arguments.
 
 If you wonder how smalltalk handles exceptions, well, this is not rocket science either. There are such methods you can call on a block/closure object, as the below code snipper demonstrates:
 
