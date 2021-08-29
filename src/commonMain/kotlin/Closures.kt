@@ -9,10 +9,9 @@ typealias Closure = () -> Any?
  *
  * @param code block of code to execute while the predicate evaluates to true
  */
-infix fun Predicate.whileTrue(code: Block) {
-    if(this()){
+inline infix fun Predicate.whileTrue(code: Block) {
+    while(this()){
         code()
-        this whileTrue code
     }
 }
 
@@ -21,10 +20,9 @@ infix fun Predicate.whileTrue(code: Block) {
  *
  * @param code block of code to execute while the predicate evaluates to false
  */
-infix fun Predicate.whileFalse(code: Block){
-    if(!this()){
+inline infix fun Predicate.whileFalse(code: Block){
+    while(!this()){
         code()
-        this whileFalse code
     }
 }
 
