@@ -111,7 +111,7 @@ fun Number.step(to: Number, lambda: (Number) -> Unit){
     this.step(to, 1, lambda)
 }
 
-fun Number.step(to: Number, step: Number, lambda: (Number) -> Unit){
+inline fun Number.step(to: Number, step: Number, lambda: (Number) -> Unit){
     if(step == 0) throw IllegalArgumentException("parameter step cannot be 0.")
     var current = this.toDouble()
     if(step.toDouble() > 0){

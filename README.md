@@ -108,7 +108,7 @@ The below section provides a full list of extension methods.
 * `Number.square() : Double` - computes the square of this receiver number.
 * `Number.tan() : Double` - computes the tangent value of this receiver number.
 * `Number.tanh() : Double` - computes the hyperbolic tangent value of this receiver number.
-* `Number.step(to: Number, step: Number, lambda: (Number) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver number, until it reaches the ending number. The step size may be provided optionally(default to 1).  
+* `inline Number.step(to: Number, step: Number, lambda: (Number) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver number, until it reaches the ending number. The step size may be provided optionally(default to 1).  
 
 #### Int/Long Methods
 * `Int|Long.abs() : Int|Long` - computes the absolute value of the receiver integer.
@@ -122,8 +122,8 @@ The below section provides a full list of extension methods.
 * `inline Int|Long.downTo(that: Int|Long, lambda: (Int|Long) -> Unit)` - evaluates the supplied lambda block with the cursor starting at the receiver integer until it reaches the ending integer, step size is -1.
 
 #### Block/Closure Methods
-* `infix Predicate.whileTrue(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to true, this is smalltalk's way of while statement.
-* `infix Predicate.whileFalse(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to false, this is smalltalk's way of until statement.
+* `inline infix Predicate.whileTrue(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to true, this is smalltalk's way of while statement.
+* `inline infix Predicate.whileFalse(code: Block)` - evaluates the supplied code block as long as the receiver predicate evaluates to false, this is smalltalk's way of until statement.
 * `inline infix Block|Closure.ensure(code: Block) : Unit|Any?` - evaluates the supplied code block regardless of whether the receiver block/closure executes successfully, this is smalltalk's way of try...finally statement.
 * `inline infix Block|Closure.ifCurtailed(code: Block) : Unit|Any?` - evaluates the supplied code block if the receiver block/closure execution fails with error/exception.
 * `inline infix Block|Closure.on<T: Throwable>(code: (T) -> Unit)` - evaluates the supplied code block if the receiver block/closure execution throws an exception of type T, this is smalltalk's way of try...catch statement.
