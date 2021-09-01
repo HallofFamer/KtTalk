@@ -48,7 +48,7 @@ val i = 5
 i timesRepeat { println("Iteration: ${it}") }
 ```
 
-This will print the line 5 times with the value of **it** ranging from 1 to 5. Similarly, there are methods upTo(to, block), downTo(to, block) and step(to, stepsize, block) that you can use for number objects. They are more elegant than writing traditional for loops(well Kotlin does not have C style for loops anyway), and thanks to Kotlin's support for trailing closures the code looks nice even for methods accepting multiple arguments.
+It will print the line 5 times with the value of **it** ranging from 1 to 5. Similarly, there are methods upTo(to, block), downTo(to, block) and step(to, stepsize, block) that you can use for number objects. They are more elegant than writing traditional for loops(well Kotlin does not have C style for loops anyway), and thanks to Kotlin's support for trailing closures the code looks nice even for methods accepting multiple arguments.
 
 If you wonder how smalltalk handles exceptions, well, this is not rocket science either. There are such methods you can call on a block/closure object, as the below code snipper demonstrates:
 
@@ -61,10 +61,21 @@ This will attempt to evaluate the receiver block/closure object, which may throw
 
 Now we can see clearly that we may not need any control structures at all in a highly expressive/elegant programming language, as it is possible to implement all of them as methods on receiver objects. I quite like the notion of 'receiver' in Kotlin language, which reminds me of Smalltalk's idea of 'sending messages to receiver objects'. 
 
-The below section provides a full list of extension methods.
+
+## How to use? 
+This library is open source, and you may simply download it and build it with gradle. On the other hand, I've uploaded the pre-built .jar files in the directory /build/lib. Just add them to the class library of your Kotlin project and you are good to go. These .jar files are for different platforms, and you may use any of them for the specific platform you are targeting. 
+
+Unfortunately, kttalk is not currently on maven repository as I do not have an account with sonatype.org. This may change in future.
+
+
+## Documentation
+The documentation of this library is generated with the help of kdoc and dokka, visit the below link for the online version of the document:
+http://kttalk.mysidiahost.com/
 
 
 ## Extension Methods List
+
+The list of type alias and extension methods are provided below:
 
 #### Type Alias
 * `typealias Predicate` - `() -> Boolean`, a closure that evaluates to boolean value.
@@ -130,6 +141,10 @@ The below section provides a full list of extension methods.
 * `inline infix Block|Closure.on<T: Throwable>(code: (T) -> Unit, ensure: Block)` - evaluates the supplied code block if the receiver block/closure execution throws an exception of type T, and always evaluates the second code block, this is smalltalk's way of try...catch...finally statement.
 
 
+## Contribution
+Feel free to submit an issue or a PR if you have any suggestions about the library, whether it is an unidentified bug or a suggestion for improvement. 
+
+
 ## Notes:
-1. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. This is not an issue with float/double numbers.
+1. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. For instance, `3.odd()` is an error, but `(3).odd()` works. This is not an issue with float/double numbers.
 2. Although this library is fun, I do not recommend using it in serious corporate/enterprise applications. It is however, good enough to use in small and hobbyist projects, especially if you enjoy Smalltalk like I do.
