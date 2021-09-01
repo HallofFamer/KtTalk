@@ -147,4 +147,4 @@ Feel free to submit an issue or a PR if you have any suggestions about the libra
 
 ## Notes:
 1. Unless an infix method is used, it is necessary to wrap integer values in parentheses when calling extension methods on them. For instance, `3.odd()` is an error, but `(3).odd()` works. This is not an issue with float/double numbers.
-2. Although this library is fun, I do not recommend using it in serious corporate/enterprise applications. It is however, good enough to use in small and hobbyist projects, especially if you enjoy Smalltalk like I do.
+2. Although this library is fun, I do not recommend using it in serious corporate/enterprise applications. It is however, good enough to use in personal and hobbyist projects, especially if you enjoy Smalltalk like I do.
