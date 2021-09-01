@@ -1,5 +1,5 @@
 # KtTalk
-A kotlin library that add smalltalk style methods to objects.
+A kotlin library that adds smalltalk style methods to objects.
 
 ## Motivation
 Smalltalk is a pure OO language in which everything is an object, and everything happens by sending messages(aka method calls). For this reason, it does not have built-in control structures, and you will achieve conditional branches and iterations/loops by calling methods. 
