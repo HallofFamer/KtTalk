@@ -3,6 +3,7 @@ package com.mysidia.kttalk
 /**
  * checks if the receiver object is null.
  *
+ * @receiver Any?
  * @return Boolean
  */
 fun Any?.isNull() : Boolean{
@@ -12,6 +13,7 @@ fun Any?.isNull() : Boolean{
 /**
  * evaluates a block if the receiver object is null.
  *
+ * @receiver Any?
  * @param block block of code to execute if null
  */
 inline infix fun Any?.ifNull(block: Block){
@@ -21,6 +23,7 @@ inline infix fun Any?.ifNull(block: Block){
 /**
  * evaluates a block if the receiver object is not null.
  *
+ * @receiver Any?
  * @param block block of code to execute if not null
  */
 inline infix fun Any?.ifNotNull(block: Block){
@@ -30,6 +33,7 @@ inline infix fun Any?.ifNotNull(block: Block){
 /**
  * evaluates first block if receiver object is null, otherwise evaluates the second block.
  *
+ * @receiver Any?
  * @param block block of code to execute if null
  * @param otherwise alternative block of code to execute if not null
  */
@@ -41,6 +45,7 @@ inline fun Any?.ifNull(block: Block, otherwise: Block){
 /**
  * evaluates first block if receiver object is not null, otherwise evaluates the second block.
  *
+ * @receiver Any?
  * @param block block of code to execute if not null
  * @param otherwise alternative block of code to execute if null
  */
